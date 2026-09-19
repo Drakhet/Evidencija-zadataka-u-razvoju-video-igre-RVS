@@ -1,27 +1,42 @@
-var builder = WebApplication.CreateBuilder(args);
+var graditelj = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+graditelj.Services.AddHttpClient("default")
 
-var app = builder.Build();
+    .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+    {
+        ServerCertificateCustomValidationCallback =
+            HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+    });
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+graditelj.Services.AddControllersWithViews()
+    .AddRazorOptions(opcije =>
+    {
+        opcije.ViewLocationFormats.Clear();
+        opcije.ViewLocationFormats.Add(
+            "/KorisnickiInterfejs/Views/{1}/{0}.cshtml");
+        opcije.ViewLocationFormats.Add(
+            "/KorisnickiInterfejs/Views/Shared/{0}.cshtml");
+    });
+
+graditelj.Services.AddDistributedMemoryCache();
+graditelj.Services.AddSession(opcije =>
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
+    opcije.IdleTimeout = TimeSpan.FromMinutes(30);
+    opcije.Cookie.HttpOnly = true;
+    opcije.Cookie.IsEssential = true;
+});
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
+graditelj.Services.AddHttpClient();
 
-app.UseRouting();
+var aplikacija = graditelj.Build();
+aplikacija.UseHttpsRedirection();
+aplikacija.UseStaticFiles();
+aplikacija.UseRouting();
+aplikacija.UseSession();
+aplikacija.UseAuthorization();
 
-app.UseAuthorization();
+aplikacija.MapControllerRoute(
+    name: "podrazumevana",
+    pattern: "{controller=Nalog}/{action=Prijava}/{id?}");
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.Run();
+aplikacija.Run();

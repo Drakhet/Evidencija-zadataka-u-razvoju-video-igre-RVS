@@ -1,3 +1,6 @@
+
+USE EvidencijaZadatakaDB;
+GO
 CREATE TABLE [KljucnaTackaRazvoja] (
     [KljucnaTackaID]  int            NOT NULL IDENTITY,
     [Naziv]           nvarchar(100)  NOT NULL,

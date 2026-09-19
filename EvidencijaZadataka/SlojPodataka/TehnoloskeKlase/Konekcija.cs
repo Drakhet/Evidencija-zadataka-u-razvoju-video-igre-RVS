@@ -8,8 +8,8 @@ namespace SlojPodataka.TehnoloskeKlase
 {
     public static class Konekcija
     {
-        public static string NizKonekcije { get; set; } =
-            "Server=localhost;Database=EvidencijaZadatakaDB;" +
-            "Trusted_Connection=True;TrustServerCertificate=True;";
+     public static string NizKonekcije { get; set; } =
+     "Server=DESKTOP-8B10BDG;Database=EvidencijaZadatakaDB;" +
+     "Trusted_Connection=True;TrustServerCertificate=True;";
     }
 }

@@ -5,7 +5,7 @@ using SlojPodataka.TehnoloskeKlase;
 namespace SlojServisa.WebServis
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/KorisnikRest")]
     public class KorisnikRestKontroler : ControllerBase
     {
         private readonly KorisnikRepozitorijum _repo;
@@ -15,7 +15,6 @@ namespace SlojServisa.WebServis
             _repo = repo;
         }
 
-        // POST api/KorisnikRest/prijava
         [HttpPost("prijava")]
         public ActionResult<string> Prijava([FromBody] PrijavaZahtev zahtev)
         {
@@ -33,7 +32,6 @@ namespace SlojServisa.WebServis
             return Ok(korisnik.KorisnickoIme);
         }
 
-        // POST api/KorisnikRest/registracija
         [HttpPost("registracija")]
         public ActionResult Registracija([FromBody] RegistracijaZahtev zahtev)
         {

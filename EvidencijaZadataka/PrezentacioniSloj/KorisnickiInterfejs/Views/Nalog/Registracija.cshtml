@@ -1,0 +1,82 @@
+﻿@model PrezentacioniSloj.PrezentacionaLogika.ViewModels.RegistracijaViewModel
+@{
+    ViewData["Title"] = "Registracija";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registracija — Evidencija zadataka</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+</head>
+<body class="bg-light d-flex align-items-center min-vh-100">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white text-center py-3">
+                    <h4 class="mb-0">Registracija</h4>
+                </div>
+                <div class="card-body p-4">
+
+                    <form asp-action="Registracija" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <div asp-validation-summary="All"
+                             class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="KorisnickoIme" class="form-label"></label>
+                            <input asp-for="KorisnickoIme" class="form-control" />
+                            <span asp-validation-for="KorisnickoIme"
+                                  class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" type="email"
+                                   class="form-control" />
+                            <span asp-validation-for="Email"
+                                  class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Lozinka" class="form-label"></label>
+                            <input asp-for="Lozinka" type="password"
+                                   class="form-control" />
+                            <span asp-validation-for="Lozinka"
+                                  class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PotvrdaLozinke" class="form-label"></label>
+                            <input asp-for="PotvrdaLozinke" type="password"
+                                   class="form-control" />
+                            <span asp-validation-for="PotvrdaLozinke"
+                                  class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-dark">
+                                Registruj se
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="card-footer text-center">
+                    <small>
+                        Već imate nalog?
+                        <a asp-action="Prijava">Prijavite se</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

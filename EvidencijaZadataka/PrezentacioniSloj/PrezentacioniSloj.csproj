@@ -17,7 +17,11 @@
   <ItemGroup>
     <ProjectReference Include="..\SlojPodataka\SlojPodataka.csproj" />
     <ProjectReference Include="..\SlojPoslovneLogike\SlojPoslovneLogike.csproj" />
-    <ProjectReference Include="..\SlojSerivsa\SlojSerivsa.csproj" />
+    <ProjectReference Include="..\SlojSerivsa\SlojServisa.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="KorisnickiInterfejs\Views\Zadatak\" />
   </ItemGroup>
 
 </Project>
