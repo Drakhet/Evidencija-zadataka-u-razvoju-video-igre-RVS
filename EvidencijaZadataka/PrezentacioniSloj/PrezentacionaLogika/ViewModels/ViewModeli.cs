@@ -53,7 +53,7 @@ namespace PrezentacioniSloj.PrezentacionaLogika.ViewModels
 
         [StringLength(1000)]
         [Display(Name = "Opis")]
-        public string Opis { get; set; } = string.Empty;
+        public string? Opis { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Tip zadatka je obavezan.")]
         [Display(Name = "Tip zadatka")]
@@ -76,7 +76,7 @@ namespace PrezentacioniSloj.PrezentacionaLogika.ViewModels
 
         [StringLength(500)]
         [Display(Name = "Napomena")]
-        public string Napomena { get; set; }
+        public string? Napomena { get; set; }
 
         [Required(ErrorMessage = "Ključna tačka razvoja je obavezna.")]
         [Display(Name = "Ključna tačka razvoja")]

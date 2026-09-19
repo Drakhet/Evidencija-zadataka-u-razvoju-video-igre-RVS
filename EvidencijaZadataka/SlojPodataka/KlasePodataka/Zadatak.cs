@@ -22,7 +22,7 @@ namespace SlojPodataka.KlasePodataka
         public string Naziv { get; set; } = string.Empty;
 
         [StringLength(1000)]
-        public string Opis { get; set; } = string.Empty;
+        public string? Opis { get; set; } = string.Empty;
 
         [Required]
         [StringLength(20)]

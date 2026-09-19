@@ -9,7 +9,10 @@
 <form asp-action="Unos" method="post" id="formaZadatak">
     @Html.AntiForgeryToken()
 
+    @if (!ViewData.ModelState.IsValid && ViewData.ModelState.ErrorCount > 0)
+{
     <div asp-validation-summary="All" class="alert alert-danger"></div>
+}
 
     @* MASTER — podaci o zadatku *@
     <div class="card mb-3">
