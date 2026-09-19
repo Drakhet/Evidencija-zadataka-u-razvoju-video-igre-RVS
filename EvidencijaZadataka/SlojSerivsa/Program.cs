@@ -1,25 +1,25 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.EntityFrameworkCore;
+using SlojPodataka.TehnoloskeKlase;
 
-// Add services to the container.
+var graditelj = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+var nizKonekcije = graditelj.Configuration
+    .GetConnectionString("EvidencijaZadatakaDB")
+    ?? Konekcija.NizKonekcije;
 
-var app = builder.Build();
+graditelj.Services.AddDbContext<EvidencijaDbContext>(opcije =>
+    opcije.UseSqlServer(nizKonekcije));
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+graditelj.Services.AddScoped<KorisnikRepozitorijum>();
 
-app.UseHttpsRedirection();
+graditelj.Services.AddControllers();
 
-app.UseAuthorization();
+graditelj.Services.AddCors(o => o.AddPolicy("DozvoliSve", b =>
+    b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
-app.MapControllers();
+var aplikacija = graditelj.Build();
 
-app.Run();
+aplikacija.UseCors("DozvoliSve");
+aplikacija.UseAuthorization();
+aplikacija.MapControllers();
+aplikacija.Run();

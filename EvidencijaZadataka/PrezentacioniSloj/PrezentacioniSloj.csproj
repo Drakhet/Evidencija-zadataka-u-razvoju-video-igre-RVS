@@ -14,4 +14,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SlojPodataka\SlojPodataka.csproj" />
+    <ProjectReference Include="..\SlojPoslovneLogike\SlojPoslovneLogike.csproj" />
+    <ProjectReference Include="..\SlojSerivsa\SlojSerivsa.csproj" />
+  </ItemGroup>
+
 </Project>
