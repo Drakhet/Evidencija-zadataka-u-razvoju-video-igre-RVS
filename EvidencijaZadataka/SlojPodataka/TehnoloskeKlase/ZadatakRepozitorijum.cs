@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SlojPodataka.KlasePodataka;
 
@@ -76,7 +81,13 @@ namespace SlojPodataka.TehnoloskeKlase
                 throw;
             }
         }
-
+        public void AzurirajPrioritet(int zadatakId, string prioritet)
+        {
+            var zadatak = _kontekst.Zadaci.Find(zadatakId);
+            if (zadatak == null) return;
+            zadatak.Prioritet = prioritet;
+            _kontekst.SaveChanges();
+        }
         public void Izmeni(Zadatak zadatak)
         {
             using var transakcija = _kontekst.Database.BeginTransaction();

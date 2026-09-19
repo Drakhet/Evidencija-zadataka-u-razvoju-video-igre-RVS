@@ -24,6 +24,16 @@ graditelj.Services.AddControllers()
 graditelj.Services.AddCors(o => o.AddPolicy("DozvoliSve", b =>
     b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
+var putanjaXmlPravila = Path.Combine(
+    Directory.GetCurrentDirectory(), "..",
+    "SlojPoslovneLogike", "Ogranicenja", "pravila_eskalacije.xml");
+
+graditelj.Services.AddSingleton(
+    new SlojPoslovneLogike.Ogranicenja.CitacPravila(putanjaXmlPravila));
+
+graditelj.Services.AddScoped<SlojPoslovneLogike.Validacija.PoslovnoPraviloValidator>();
+graditelj.Services.AddScoped<SlojPoslovneLogike.Stanje.PrikupljanjeStanja>();
+
 var aplikacija = graditelj.Build();
 
 aplikacija.UseCors("DozvoliSve");

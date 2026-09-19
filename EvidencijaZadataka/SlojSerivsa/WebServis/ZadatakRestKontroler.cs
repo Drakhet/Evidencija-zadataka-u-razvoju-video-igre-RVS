@@ -9,15 +9,21 @@ namespace SlojServisa.WebServis
     public class ZadatakRestKontroler : ControllerBase
     {
         private readonly ZadatakRepozitorijum _repo;
+        private readonly SlojPoslovneLogike.Stanje.PrikupljanjeStanja _prikupljanje;
 
-        public ZadatakRestKontroler(ZadatakRepozitorijum repo)
+        public ZadatakRestKontroler(
+            ZadatakRepozitorijum repo,
+            SlojPoslovneLogike.Stanje.PrikupljanjeStanja prikupljanje)
         {
             _repo = repo;
+            _prikupljanje = prikupljanje;
         }
 
         [HttpGet]
         public ActionResult<List<Zadatak>> DohvatiSve()
         {
+            Console.WriteLine("DohvatiSve pozvan");
+            _prikupljanje.PrimeniPravilo();
             var zadaci = _repo.DohvatiSve();
             return Ok(zadaci);
         }
@@ -33,10 +39,12 @@ namespace SlojServisa.WebServis
 
         [HttpGet("filtriraj")]
         public ActionResult<List<Zadatak>> Filtriraj(
-            [FromQuery] string? status,
-            [FromQuery] string? tipZadatka,
-            [FromQuery] int? kljucnaTackaId)
+      [FromQuery] string? status,
+      [FromQuery] string? tipZadatka,
+      [FromQuery] int? kljucnaTackaId)
         {
+            Console.WriteLine("Filtriraj pozvan");
+            _prikupljanje.PrimeniPravilo();
             var zadaci = _repo.Filtriraj(status, tipZadatka, kljucnaTackaId);
             return Ok(zadaci);
         }
@@ -81,6 +89,8 @@ namespace SlojServisa.WebServis
                 s.RedniBroj = rb++;
 
             _repo.Dodaj(zadatak);
+            _prikupljanje.PrimeniPraviloNaJedan(zadatak);
+
             return Ok(zadatak);
         }
 
