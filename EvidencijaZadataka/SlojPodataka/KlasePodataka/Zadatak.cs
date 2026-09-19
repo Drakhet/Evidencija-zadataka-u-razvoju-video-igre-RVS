@@ -47,6 +47,7 @@ namespace SlojPodataka.KlasePodataka
         [StringLength(500)]
         public string Napomena { get; set; } = string.Empty;
 
+        [Column("KljucnaTackaID")]
         [ForeignKey("KljucnaTackaRazvoja")]
         [Required]
         public int KljucnaTackaRazvojaID { get; set; }

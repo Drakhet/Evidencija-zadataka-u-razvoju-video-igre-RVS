@@ -1,0 +1,148 @@
+﻿@using SlojPodataka.KlasePodataka
+@model List<Zadatak>
+@{
+    ViewData["Title"] = "Zadaci";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Zadaci na razvoju igre</h2>
+    <a asp-action="Unos" class="btn btn-dark">Novi zadatak</a>
+</div>
+
+@* Filter *@
+<form asp-action="Spisak" method="get" class="row g-2 mb-4">
+    <div class="col-auto">
+        <select name="status" class="form-select form-select-sm">
+            <option value="">— Svi statusi —</option>
+            @foreach (var s in new[] { "Otvoren", "U radu", "Testiranje", "Završeno", "Kasni" })
+            {
+                <option value="@s" selected="@(ViewBag.TrenutniStatus == s)">@s</option>
+            }
+        </select>
+    </div>
+    <div class="col-auto">
+        <select name="tipZadatka" class="form-select form-select-sm">
+            <option value="">— Svi tipovi —</option>
+            @foreach (var t in new[] { "Funkcija", "Bag", "Umetnost" })
+            {
+                <option value="@t" selected="@(ViewBag.TrenutniTip == t)">@t</option>
+            }
+        </select>
+    </div>
+    <div class="col-auto">
+        <select name="kljucnaTackaId" class="form-select form-select-sm">
+            <option value="">— Sve ključne tačke —</option>
+            @foreach (var k in (List<KljucnaTackaRazvoja>)(ViewBag.KljucneTacke
+                ?? new List<KljucnaTackaRazvoja>()))
+            {
+                <option value="@k.KljucnaTackaRazvojaID"
+                        selected="@(ViewBag.TrenutnaKljucnaTacka?.ToString()
+                                                       == k.KljucnaTackaRazvojaID.ToString())">
+                    @k.Naziv
+                </option>
+            }
+        </select>
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-sm btn-secondary">Filtriraj</button>
+        <a asp-action="Spisak" class="btn btn-sm btn-outline-secondary">Poništi</a>
+    </div>
+</form>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Nema zadataka koji odgovaraju filteru.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Šifra</th>
+                    <th>Naziv</th>
+                    <th>Tip</th>
+                    <th>Ključna tačka</th>
+                    <th>Zadužen</th>
+                    <th>Rok</th>
+                    <th>Prioritet</th>
+                    <th>Status</th>
+                    <th>%</th>
+                    <th>Akcije</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var z in Model)
+                {
+                    int dani = (z.RokZaZavrsetak - DateTime.Today).Days;
+                    bool upozorenje = z.Status != "Završeno" && dani <= 3;
+
+                    <tr class="@(upozorenje ? "table-danger" : "")">
+                        <td><code>@z.Sifra</code></td>
+                        <td>
+                            <a asp-action="Detalji" asp-route-id="@z.ZadatakID">
+                                @z.Naziv
+                            </a>
+                        </td>
+                        <td>
+                            @{
+                                var tipKlasa = z.TipZadatka switch
+                                {
+                                    "Bag" => "bg-danger",
+                                    "Funkcija" => "bg-primary",
+                                    "Umetnost" => "bg-success",
+                                    _ => "bg-secondary"
+                                };
+                            }
+                            <span class="badge @tipKlasa">@z.TipZadatka</span>
+                        </td>
+                        <td>@z.KljucnaTackaRazvoja?.Naziv</td>
+                        <td>@z.ClanTima?.PunoIme</td>
+                        <td>
+                            @z.RokZaZavrsetak.ToString("dd.MM.yyyy")
+                            @if (upozorenje)
+                            {
+                                <br />
+                                <small class="text-danger fw-bold">
+                                    @(dani < 0
+                                        ? $"Istekao pre {-dani} dana"
+                                        : $"Ističe za {dani} dana")
+                                </small>
+                            }
+                        </td>
+                        <td>
+                            @{
+                                var priorKlasa = z.Prioritet switch
+                                {
+                                    "Visok" => "bg-danger",
+                                    "Srednji" => "bg-warning text-dark",
+                                    "Nizak" => "bg-success",
+                                    _ => "bg-secondary"
+                                };
+                            }
+                            <span class="badge @priorKlasa">@z.Prioritet</span>
+                        </td>
+                        <td>@z.Status</td>
+                        <td>
+                            <div class="progress" style="min-width:55px">
+                                <div class="progress-bar"
+                                     style="width:@z.ProcenatZavrsenosti%">
+                                    @z.ProcenatZavrsenosti%
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-nowrap">
+                            <a asp-action="Detalji" asp-route-id="@z.ZadatakID"
+                               class="btn btn-sm btn-outline-secondary">Detalji</a>
+                            <a asp-action="Izmena" asp-route-id="@z.ZadatakID"
+                               class="btn btn-sm btn-outline-primary">Izmeni</a>
+                            <a asp-action="Obrisi" asp-route-id="@z.ZadatakID"
+                               class="btn btn-sm btn-outline-danger">Obriši</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <small class="text-muted">Ukupno: @Model.Count zadataka.</small>
+}

@@ -11,8 +11,10 @@ graditelj.Services.AddDbContext<EvidencijaDbContext>(opcije =>
     opcije.UseSqlServer(nizKonekcije));
 
 graditelj.Services.AddScoped<KorisnikRepozitorijum>();
+graditelj.Services.AddScoped<ZadatakRepozitorijum>();
 
 graditelj.Services.AddControllers();
+
 
 graditelj.Services.AddCors(o => o.AddPolicy("DozvoliSve", b =>
     b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));

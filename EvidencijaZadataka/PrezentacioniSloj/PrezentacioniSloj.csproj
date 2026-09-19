@@ -20,8 +20,4 @@
     <ProjectReference Include="..\SlojSerivsa\SlojServisa.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="KorisnickiInterfejs\Views\Zadatak\" />
-  </ItemGroup>
-
 </Project>

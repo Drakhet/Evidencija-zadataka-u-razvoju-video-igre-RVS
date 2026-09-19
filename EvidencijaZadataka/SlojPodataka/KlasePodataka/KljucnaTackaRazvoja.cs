@@ -11,6 +11,7 @@ namespace SlojPodataka.KlasePodataka
     [Table("KljucnaTackaRazvoja")]
     public class KljucnaTackaRazvoja
     {
+        [Column("KljucnaTackaID")]
         [Key]
         public int KljucnaTackaRazvojaID { get; set; }
 
