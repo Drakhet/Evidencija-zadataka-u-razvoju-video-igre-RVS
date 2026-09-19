@@ -82,6 +82,40 @@ namespace PrezentacioniSloj.PrezentacionaLogika.Controllers
             TempData["Poruka"] = "Zadatak je uspešno obrisan.";
             return RedirectToAction(nameof(Spisak));
         }
+        public async Task<IActionResult> Stampaj(int id)
+        {
+            if (!KorisnikPrijavljen())
+                return RedirectToAction("Prijava", "Nalog");
+
+            var zadatak = await _httpClient
+                .GetFromJsonAsync<Zadatak>($"{_urlZadatak}/{id}");
+
+            if (zadatak == null) return NotFound();
+
+            ViewBag.DaniDoRoka = (zadatak.RokZaZavrsetak - DateTime.Today).Days;
+            return View(zadatak);
+        }
+
+        public async Task<IActionResult> StampajSpisak(
+            string? status, string? tipZadatka, int? kljucnaTackaId)
+        {
+            if (!KorisnikPrijavljen())
+                return RedirectToAction("Prijava", "Nalog");
+
+            var url = $"{_urlZadatak}/filtriraj?" +
+                      $"status={status}&tipZadatka={tipZadatka}" +
+                      (kljucnaTackaId.HasValue ? $"&kljucnaTackaId={kljucnaTackaId}" : "");
+
+            var zadaci = await _httpClient
+                .GetFromJsonAsync<List<Zadatak>>(url)
+                ?? new List<Zadatak>();
+
+            ViewBag.FilterStatus = status ?? "Svi";
+            ViewBag.FilterTip = tipZadatka ?? "Svi";
+            ViewBag.DatumStampe = DateTime.Now.ToString("dd.MM.yyyy HH:mm");
+
+            return View(zadaci);
+        }
         private async Task<List<(int ID, string Naziv)>> DohvatiKljucneTackeZaMeni()
         {
             var lista = await _httpClient

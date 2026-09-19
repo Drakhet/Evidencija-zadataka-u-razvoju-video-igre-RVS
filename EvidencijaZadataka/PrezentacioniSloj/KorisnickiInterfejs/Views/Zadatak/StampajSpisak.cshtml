@@ -1,0 +1,117 @@
+﻿@using SlojPodataka.KlasePodataka
+@model List<Zadatak>
+@{
+    ViewData["Title"] = "Štampa spiska";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="utf-8" />
+    <title>Spisak zadataka</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; font-size: 10pt; color: #000; padding: 20px; }
+        .zaglavlje { border-bottom: 2px solid #000; padding-bottom: 8px; margin-bottom: 14px; }
+        .naslov { font-size: 15pt; font-weight: bold; text-transform: uppercase; }
+        .meta { font-size: 9pt; color: #555; margin-top: 4px; }
+        table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+        th {
+            background: #333; color: #fff;
+            border: 1px solid #555; padding: 5px 7px; text-align: left;
+        }
+        td { border: 1px solid #ccc; padding: 4px 7px; vertical-align: top; }
+        tr:nth-child(even) td { background: #f9f9f9; }
+        .upozorenje td { background: #ffe0e0 !important; }
+        .podnozje {
+            border-top: 1px solid #ccc; padding-top: 6px; margin-top: 16px;
+            font-size: 9pt; color: #666;
+            display: flex; justify-content: space-between;
+        }
+        .dugme-stampa { margin-bottom: 16px; }
+        @@media print {
+            .dugme-stampa { display: none !important; }
+            body { padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dugme-stampa">
+        <button onclick="window.print()"
+                style="padding:8px 20px;cursor:pointer;">
+                Odštampaj
+        </button>
+        <button onclick="window.history.back()"
+                style="padding:8px 20px;cursor:pointer;margin-left:8px;">
+            ← Nazad
+        </button>
+    </div>
+
+    <div class="zaglavlje">
+        <div class="naslov">Spisak zadataka na razvoju igre</div>
+        <div class="meta">
+            Status: <strong>@ViewBag.FilterStatus</strong> &nbsp;|&nbsp;
+            Tip: <strong>@ViewBag.FilterTip</strong> &nbsp;|&nbsp;
+            Ukupno: <strong>@Model.Count</strong> zadataka &nbsp;|&nbsp;
+            Odštampano: @ViewBag.DatumStampe
+        </div>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <p>Nema zadataka koji odgovaraju filteru.</p>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Šifra</th>
+                    <th>Naziv</th>
+                    <th>Tip</th>
+                    <th>Ključna tačka</th>
+                    <th>Zaduženi</th>
+                    <th>Rok</th>
+                    <th>Prioritet</th>
+                    <th>Status</th>
+                    <th>%</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var z in Model)
+                {
+                    int dani = (z.RokZaZavrsetak - DateTime.Today).Days;
+                    bool upoz = z.Status != "Završeno" && dani <= 3;
+
+                    <tr class="@(upoz ? "upozorenje" : "")">
+                        <td><strong>@z.Sifra</strong></td>
+                        <td>@z.Naziv</td>
+                        <td>@z.TipZadatka</td>
+                        <td>@z.KljucnaTackaRazvoja?.Naziv</td>
+                        <td>@z.ClanTima?.PunoIme</td>
+                        <td>
+                            @z.RokZaZavrsetak.ToString("dd.MM.yyyy")
+                            @if (dani < 0)
+                            {
+                                <br /><small>ISTEKAO</small>
+                            }
+                        </td>
+                        <td>@z.Prioritet</td>
+                        <td>@z.Status</td>
+                        <td>@z.ProcenatZavrsenosti%</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="podnozje">
+            <span>Evidencija zadataka na razvoju igre</span>
+            <span>Ukupno: @Model.Count zadataka</span>
+            <span>@ViewBag.DatumStampe</span>
+        </div>
+    }
+
+</body>
+</html>
