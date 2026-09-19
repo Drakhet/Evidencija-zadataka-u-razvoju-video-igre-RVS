@@ -8,11 +8,16 @@
 
   <ItemGroup>
     <Folder Include="BazaPodataka\" />
-    <Folder Include="XML\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="XML\pocetni_podaci.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

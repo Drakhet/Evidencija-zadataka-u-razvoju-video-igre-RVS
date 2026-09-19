@@ -1,0 +1,134 @@
+﻿@using SlojPodataka.KlasePodataka
+@model Zadatak
+@{
+    ViewData["Title"] = $"Zadatak {Model.Sifra}";
+    int dani = ViewBag.DaniDoRoka ?? 0;
+    bool upozorenje = Model.Status != "Završeno" && dani <= 3;
+}
+
+<div class="d-flex justify-content-between align-items-start mb-3">
+    <div>
+        <h2>@Model.Naziv</h2>
+        <code class="text-muted">@Model.Sifra</code>
+    </div>
+    <div class="text-end">
+        <a asp-action="Izmena" asp-route-id="@Model.ZadatakID"
+           class="btn btn-primary">Izmeni</a>
+        <a asp-action="Spisak" class="btn btn-outline-secondary">← Nazad</a>
+    </div>
+</div>
+
+@if (upozorenje)
+{
+    <div class="alert alert-danger">
+        <strong>Upozorenje:</strong>
+        @(dani < 0
+            ? $"Rok je istekao pre {-dani} dana. Prioritet je automatski postavljen na Visok."
+            : $"Rok ističe za {dani} dana. Prioritet je automatski postavljen na Visok.")
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card mb-3">
+            <div class="card-header"><strong>Podaci o zadatku</strong></div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4">Tip zadatka</dt>
+                    <dd class="col-sm-8">@Model.TipZadatka</dd>
+
+                    <dt class="col-sm-4">Opis</dt>
+                    <dd class="col-sm-8">
+                        @(string.IsNullOrEmpty(Model.Opis) ? "—" : Model.Opis)
+                    </dd>
+
+                    <dt class="col-sm-4">Ključna tačka</dt>
+                    <dd class="col-sm-8">@Model.KljucnaTackaRazvoja?.Naziv</dd>
+
+                    <dt class="col-sm-4">Zaduženi član</dt>
+                    <dd class="col-sm-8">@Model.ClanTima?.PunoIme</dd>
+
+                    <dt class="col-sm-4">Datum kreiranja</dt>
+                    <dd class="col-sm-8">
+                        @Model.DatumKreiranja.ToString("dd.MM.yyyy")
+                    </dd>
+
+                    <dt class="col-sm-4">Rok za završetak</dt>
+                    <dd class="col-sm-8">
+                        <span class="@(upozorenje ? "text-danger fw-bold" : "")">
+                            @Model.RokZaZavrsetak.ToString("dd.MM.yyyy")
+                        </span>
+                    </dd>
+
+                    <dt class="col-sm-4">Prioritet</dt>
+                    <dd class="col-sm-8">
+                        @{
+                            var klasa = Model.Prioritet switch
+                            {
+                                "Visok" => "bg-danger",
+                                "Srednji" => "bg-warning text-dark",
+                                "Nizak" => "bg-success",
+                                _ => "bg-secondary"
+                            };
+                        }
+                        <span class="badge @klasa">@Model.Prioritet</span>
+                    </dd>
+
+                    <dt class="col-sm-4">Status</dt>
+                    <dd class="col-sm-8">@Model.Status</dd>
+
+                    <dt class="col-sm-4">Završenost</dt>
+                    <dd class="col-sm-8">
+                        <div class="progress" style="max-width:200px">
+                            <div class="progress-bar"
+                                 style="width:@Model.ProcenatZavrsenosti%">
+                                @Model.ProcenatZavrsenosti%
+                            </div>
+                        </div>
+                    </dd>
+
+                    @if (!string.IsNullOrEmpty(Model.Napomena))
+                    {
+                        <dt class="col-sm-4">Napomena</dt>
+                        <dd class="col-sm-8">@Model.Napomena</dd>
+                    }
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Podzadaci *@
+<div class="card">
+    <div class="card-header">
+        <strong>Podzadaci (@Model.Stavke.Count)</strong>
+    </div>
+    <div class="card-body p-0">
+        @if (!Model.Stavke.Any())
+        {
+            <div class="p-3 text-muted">Ovaj zadatak nema podzadataka.</div>
+        }
+        else
+        {
+            <table class="table table-sm table-bordered mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width:50px">Rb.</th>
+                        <th>Naziv podzadatka</th>
+                        <th style="width:90px" class="text-center">Završeno</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var s in Model.Stavke.OrderBy(x => x.RedniBroj))
+                    {
+                        <tr class="@(s.Zavrseno ? "table-success" : "")">
+                            <td class="text-center">@s.RedniBroj.</td>
+                            <td>@s.NazivPodzadatka</td>
+                            <td class="text-center">@(s.Zavrseno ? "✓" : "")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

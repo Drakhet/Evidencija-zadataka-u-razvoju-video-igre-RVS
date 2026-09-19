@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PocetniPodaci>
+
+  <KljucneTacke>
+    <KljucnaTackaRazvoja>
+      <Naziv>Prototip</Naziv>
+      <Opis>Osnovna mehanika i dokaz koncepta igre.</Opis>
+      <DatumPocetka>2026-01-01</DatumPocetka>
+      <DatumZavrsetka>2026-03-31</DatumZavrsetka>
+    </KljucnaTackaRazvoja>
+    <KljucnaTackaRazvoja>
+      <Naziv>Alfa 0.1</Naziv>
+      <Opis>Prva igrabilna verzija sa osnovnim nivoima.</Opis>
+      <DatumPocetka>2026-04-01</DatumPocetka>
+      <DatumZavrsetka>2026-06-30</DatumZavrsetka>
+    </KljucnaTackaRazvoja>
+    <KljucnaTackaRazvoja>
+      <Naziv>Alfa 0.2</Naziv>
+      <Opis>Prošireni sadržaj i ispravljeni kritični bagovi.</Opis>
+      <DatumPocetka>2026-07-01</DatumPocetka>
+      <DatumZavrsetka>2026-08-31</DatumZavrsetka>
+    </KljucnaTackaRazvoja>
+    <KljucnaTackaRazvoja>
+      <Naziv>Beta 1.0</Naziv>
+      <Opis>Kompletna igra sa svim nivoima, spremna za testiranje.</Opis>
+      <DatumPocetka>2026-09-01</DatumPocetka>
+      <DatumZavrsetka>2026-10-31</DatumZavrsetka>
+    </KljucnaTackaRazvoja>
+    <KljucnaTackaRazvoja>
+      <Naziv>Zlatna verzija</Naziv>
+      <Opis>Finalna verzija spremna za objavljivanje.</Opis>
+      <DatumPocetka>2026-11-01</DatumPocetka>
+      <DatumZavrsetka>2026-12-15</DatumZavrsetka>
+    </KljucnaTackaRazvoja>
+  </KljucneTacke>
+
+  <Clanovi>
+    <ClanTima>
+      <Ime>Milovan</Ime>
+      <Prezime>Jovanov</Prezime>
+      <Email>milovan.jovanov@igra.rs</Email>
+      <Uloga>Programer</Uloga>
+    </ClanTima>
+    <ClanTima>
+      <Ime>Ana</Ime>
+      <Prezime>Petrović</Prezime>
+      <Email>ana.petrovic@igra.rs</Email>
+      <Uloga>Dizajner</Uloga>
+    </ClanTima>
+    <ClanTima>
+      <Ime>Stefan</Ime>
+      <Prezime>Nikolić</Prezime>
+      <Email>stefan.nikolic@igra.rs</Email>
+      <Uloga>Tester</Uloga>
+    </ClanTima>
+    <ClanTima>
+      <Ime>Jelena</Ime>
+      <Prezime>Marković</Prezime>
+      <Email>jelena.markovic@igra.rs</Email>
+      <Uloga>Umetnički direktor</Uloga>
+    </ClanTima>
+    <ClanTima>
+      <Ime>Nemanja</Ime>
+      <Prezime>Đorđević</Prezime>
+      <Email>nemanja.djordjevic@igra.rs</Email>
+      <Uloga>Producent</Uloga>
+    </ClanTima>
+  </Clanovi>
+
+  <Korisnici>
+    <Korisnik>
+      <KorisnickoIme>admin</KorisnickoIme>
+      <Email>admin@igra.rs</Email>
+      <Lozinka>Admin123!</Lozinka>
+    </Korisnik>
+    <Korisnik>
+      <KorisnickoIme>milovan</KorisnickoIme>
+      <Email>milovan@igra.rs</Email>
+      <Lozinka>Lozinka123!</Lozinka>
+    </Korisnik>
+  </Korisnici>
+
+</PocetniPodaci>

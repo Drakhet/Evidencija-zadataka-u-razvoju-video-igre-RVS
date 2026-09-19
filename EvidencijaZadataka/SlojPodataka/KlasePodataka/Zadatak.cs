@@ -14,7 +14,6 @@ namespace SlojPodataka.KlasePodataka
         [Key]
         public int ZadatakID { get; set; }
 
-        [Required]
         [StringLength(20)]
         public string Sifra { get; set; } = string.Empty;
 
@@ -45,18 +44,18 @@ namespace SlojPodataka.KlasePodataka
         public DateTime RokZaZavrsetak { get; set; }
 
         [StringLength(500)]
-        public string Napomena { get; set; } = string.Empty;
+        public string? Napomena { get; set; }
 
         [Column("KljucnaTackaID")]
         [ForeignKey("KljucnaTackaRazvoja")]
         [Required]
         public int KljucnaTackaRazvojaID { get; set; }
-        public KljucnaTackaRazvoja KljucnaTackaRazvoja { get; set; } = null!;
+        public KljucnaTackaRazvoja? KljucnaTackaRazvoja { get; set; }
 
         [ForeignKey("ClanTima")]
         [Required]
         public int ClanTimaID { get; set; }
-        public ClanTima ClanTima { get; set; } = null!;
+        public ClanTima? ClanTima { get; set; }
 
         public ICollection<StavkaZadatka> Stavke { get; set; }
             = new List<StavkaZadatka>();
