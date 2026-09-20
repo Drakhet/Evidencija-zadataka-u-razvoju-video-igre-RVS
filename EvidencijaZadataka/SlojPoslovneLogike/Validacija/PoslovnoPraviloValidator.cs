@@ -19,7 +19,7 @@ namespace SlojPoslovneLogike.Validacija
 
         public bool TrebaEskaliratiPrioritet(Zadatak zadatak)
         {
-            if (zadatak.Status == "Završeno") return false;
+            if (zadatak.Status == "Zavrseno") return false;
             if (zadatak.Prioritet == "Visok") return false;
 
             int prag = _citacPravila.DohvatiRokZaPrioritet();
@@ -41,8 +41,8 @@ namespace SlojPoslovneLogike.Validacija
                 return (false,
                     $"Za status 'U radu' procenat mora biti najmanje {min}%.");
 
-            if (status == "Završeno" && procenat != 100)
-                return (false, "Za status 'Završeno' procenat mora biti 100%.");
+            if (status == "Zavrseno" && procenat != 100)
+                return (false, "Za status 'Zavrseno' procenat mora biti 100%.");
 
             return (true, "Validacija uspešna.");
         }

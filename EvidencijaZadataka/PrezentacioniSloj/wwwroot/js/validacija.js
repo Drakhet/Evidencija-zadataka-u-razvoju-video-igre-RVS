@@ -54,7 +54,7 @@ function validirajFormu() {
         document.getElementById("procenat")?.value ?? "0", 10);
     if (isNaN(procenat) || procenat < 0 || procenat > 100) {
         prikaziGresku("greska-procenat",
-            "Procenat završenosti mora biti između 0 i 100.");
+            "Procenat Zavrsenosti mora biti između 0 i 100.");
         ispravno = false;
     }
 

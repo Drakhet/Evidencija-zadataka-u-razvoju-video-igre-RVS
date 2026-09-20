@@ -1,4 +1,6 @@
-
+    
+CREATE DATABASE EvidencijaZadatakaDB;
+GO
 USE EvidencijaZadatakaDB;
 GO
 CREATE TABLE [KljucnaTackaRazvoja] (
@@ -44,9 +46,9 @@ CREATE TABLE [Zadatak] (
     [DatumKreiranja]      datetime2      NOT NULL,
     CONSTRAINT [PK_Zadatak] PRIMARY KEY ([ZadatakID]),
     CONSTRAINT [UQ_Zadatak_Sifra] UNIQUE ([Sifra]),
-    CONSTRAINT [CK_Zadatak_TipZadatka] CHECK ([TipZadatka] IN ('Funkcija', 'Bag', 'Umetnost')),
-    CONSTRAINT [CK_Zadatak_Prioritet] CHECK ([Prioritet] IN ('Nizak', 'Srednji', 'Visok')),
-    CONSTRAINT [CK_Zadatak_Status] CHECK ([Status] IN ('Otvoren', 'U radu', 'Testiranje', 'Završeno', 'Kasni')),
+    CONSTRAINT [CK_Zadatak_TipZadatka] CHECK ([TipZadatka] IN (N'Funkcija', N'Bag', N'Umetnost')),
+    CONSTRAINT [CK_Zadatak_Prioritet] CHECK ([Prioritet] IN (N'Nizak', N'Srednji', N'Visok')),
+    CONSTRAINT [CK_Zadatak_Status] CHECK ([Status] IN (N'Otvoren', N'U radu', N'Testiranje', N'Zavrseno', N'Kasni')),
     CONSTRAINT [CK_Zadatak_Procenat] CHECK ([ProcenatZavrsenosti] BETWEEN 0 AND 100),
     CONSTRAINT [FK_Zadatak_KljucnaTackaRazvoja] FOREIGN KEY ([KljucnaTackaID])
         REFERENCES [KljucnaTackaRazvoja] ([KljucnaTackaID]) ON DELETE NO ACTION,

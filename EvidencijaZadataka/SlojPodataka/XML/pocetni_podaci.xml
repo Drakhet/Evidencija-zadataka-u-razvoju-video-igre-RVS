@@ -1,83 +1,234 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PocetniPodaci>
 
-  <KljucneTacke>
-    <KljucnaTackaRazvoja>
-      <Naziv>Prototip</Naziv>
-      <Opis>Osnovna mehanika i dokaz koncepta igre.</Opis>
-      <DatumPocetka>2026-01-01</DatumPocetka>
-      <DatumZavrsetka>2026-03-31</DatumZavrsetka>
-    </KljucnaTackaRazvoja>
-    <KljucnaTackaRazvoja>
-      <Naziv>Alfa 0.1</Naziv>
-      <Opis>Prva igrabilna verzija sa osnovnim nivoima.</Opis>
-      <DatumPocetka>2026-04-01</DatumPocetka>
-      <DatumZavrsetka>2026-06-30</DatumZavrsetka>
-    </KljucnaTackaRazvoja>
-    <KljucnaTackaRazvoja>
-      <Naziv>Alfa 0.2</Naziv>
-      <Opis>Prošireni sadržaj i ispravljeni kritični bagovi.</Opis>
-      <DatumPocetka>2026-07-01</DatumPocetka>
-      <DatumZavrsetka>2026-08-31</DatumZavrsetka>
-    </KljucnaTackaRazvoja>
-    <KljucnaTackaRazvoja>
-      <Naziv>Beta 1.0</Naziv>
-      <Opis>Kompletna igra sa svim nivoima, spremna za testiranje.</Opis>
-      <DatumPocetka>2026-09-01</DatumPocetka>
-      <DatumZavrsetka>2026-10-31</DatumZavrsetka>
-    </KljucnaTackaRazvoja>
-    <KljucnaTackaRazvoja>
-      <Naziv>Zlatna verzija</Naziv>
-      <Opis>Finalna verzija spremna za objavljivanje.</Opis>
-      <DatumPocetka>2026-11-01</DatumPocetka>
-      <DatumZavrsetka>2026-12-15</DatumZavrsetka>
-    </KljucnaTackaRazvoja>
-  </KljucneTacke>
+	<KljucneTacke>
+		<KljucnaTackaRazvoja>
+			<Naziv>Prototip</Naziv>
+			<Opis>Osnovna mehanika i dokaz koncepta igre.</Opis>
+			<DatumPocetka>2026-01-01</DatumPocetka>
+			<DatumZavrsetka>2026-03-31</DatumZavrsetka>
+		</KljucnaTackaRazvoja>
+		<KljucnaTackaRazvoja>
+			<Naziv>Alfa 0.1</Naziv>
+			<Opis>Prva igrabilna verzija sa osnovnim nivoima.</Opis>
+			<DatumPocetka>2026-04-01</DatumPocetka>
+			<DatumZavrsetka>2026-06-30</DatumZavrsetka>
+		</KljucnaTackaRazvoja>
+		<KljucnaTackaRazvoja>
+			<Naziv>Alfa 0.2</Naziv>
+			<Opis>Prošireni sadržaj i ispravljeni kritični bagovi.</Opis>
+			<DatumPocetka>2026-07-01</DatumPocetka>
+			<DatumZavrsetka>2026-08-31</DatumZavrsetka>
+		</KljucnaTackaRazvoja>
+		<KljucnaTackaRazvoja>
+			<Naziv>Beta 1.0</Naziv>
+			<Opis>Kompletna igra sa svim nivoima, spremna za testiranje.</Opis>
+			<DatumPocetka>2026-09-01</DatumPocetka>
+			<DatumZavrsetka>2026-10-31</DatumZavrsetka>
+		</KljucnaTackaRazvoja>
+		<KljucnaTackaRazvoja>
+			<Naziv>Zlatna verzija</Naziv>
+			<Opis>Finalna verzija spremna za objavljivanje.</Opis>
+			<DatumPocetka>2026-11-01</DatumPocetka>
+			<DatumZavrsetka>2026-12-15</DatumZavrsetka>
+		</KljucnaTackaRazvoja>
+	</KljucneTacke>
 
-  <Clanovi>
-    <ClanTima>
-      <Ime>Milovan</Ime>
-      <Prezime>Jovanov</Prezime>
-      <Email>milovan.jovanov@igra.rs</Email>
-      <Uloga>Programer</Uloga>
-    </ClanTima>
-    <ClanTima>
-      <Ime>Ana</Ime>
-      <Prezime>Petrović</Prezime>
-      <Email>ana.petrovic@igra.rs</Email>
-      <Uloga>Dizajner</Uloga>
-    </ClanTima>
-    <ClanTima>
-      <Ime>Stefan</Ime>
-      <Prezime>Nikolić</Prezime>
-      <Email>stefan.nikolic@igra.rs</Email>
-      <Uloga>Tester</Uloga>
-    </ClanTima>
-    <ClanTima>
-      <Ime>Jelena</Ime>
-      <Prezime>Marković</Prezime>
-      <Email>jelena.markovic@igra.rs</Email>
-      <Uloga>Umetnički direktor</Uloga>
-    </ClanTima>
-    <ClanTima>
-      <Ime>Nemanja</Ime>
-      <Prezime>Đorđević</Prezime>
-      <Email>nemanja.djordjevic@igra.rs</Email>
-      <Uloga>Producent</Uloga>
-    </ClanTima>
-  </Clanovi>
+	<Clanovi>
+		<ClanTima>
+			<Ime>Milovan</Ime>
+			<Prezime>Jovanov</Prezime>
+			<Email>milovan.jovanov@igra.rs</Email>
+			<Uloga>Programer</Uloga>
+		</ClanTima>
+		<ClanTima>
+			<Ime>Marko</Ime>
+			<Prezime>Marković</Prezime>
+			<Email>marko.markovic@igra.rs</Email>
+			<Uloga>Dizajner</Uloga>
+		</ClanTima>
+		<ClanTima>
+			<Ime>Nikola</Ime>
+			<Prezime>Nikolić</Prezime>
+			<Email>nikola.nikolic@igra.rs</Email>
+			<Uloga>Tester</Uloga>
+		</ClanTima>
+		<ClanTima>
+			<Ime>Miloš</Ime>
+			<Prezime>Milošević</Prezime>
+			<Email>milos.milosevic@igra.rs</Email>
+			<Uloga>Umetnički direktor</Uloga>
+		</ClanTima>
+		<ClanTima>
+			<Ime>Nemanja</Ime>
+			<Prezime>Nemanjić</Prezime>
+			<Email>nemanja.nemanjic@igra.rs</Email>
+			<Uloga>Producent</Uloga>
+		</ClanTima>
+	</Clanovi>
 
-  <Korisnici>
-    <Korisnik>
-      <KorisnickoIme>admin</KorisnickoIme>
-      <Email>admin@igra.rs</Email>
-      <Lozinka>Admin123!</Lozinka>
-    </Korisnik>
-    <Korisnik>
-      <KorisnickoIme>milovan</KorisnickoIme>
-      <Email>milovan@igra.rs</Email>
-      <Lozinka>Lozinka123!</Lozinka>
-    </Korisnik>
-  </Korisnici>
+	<Korisnici>
+		<Korisnik>
+			<KorisnickoIme>admin</KorisnickoIme>
+			<Email>admin@igra.rs</Email>
+			<Lozinka>Admin123!</Lozinka>
+		</Korisnik>
+		<Korisnik>
+			<KorisnickoIme>milovan</KorisnickoIme>
+			<Email>milovan.jovanov@igra.rs</Email>
+			<Lozinka>Milovan123!</Lozinka>
+		</Korisnik>
+	</Korisnici>
+
+	<Zadaci>
+		<Zadatak>
+			<Sifra>ZAD-2026-0001</Sifra>
+			<Naziv>Implementacija kretanja igrača</Naziv>
+			<Opis>Kretanje u 8 pravaca sa animacijama hodanja i trčanja.</Opis>
+			<TipZadatka>Funkcija</TipZadatka>
+			<Prioritet>Visok</Prioritet>
+			<Status>Zavrseno</Status>
+			<ProcenatZavrsenosti>100</ProcenatZavrsenosti>
+			<RokZaZavrsetak>2026-01-20</RokZaZavrsetak>
+			<Napomena>Testirano na svim rezolucijama.</Napomena>
+			<KljucnaTackaRazvojaID>1</KljucnaTackaRazvojaID>
+			<ClanTimaID>1</ClanTimaID>
+		</Zadatak>
+		<Zadatak>
+			<Sifra>ZAD-2026-0002</Sifra>
+			<Naziv>Dizajn glavnog menija</Naziv>
+			<Opis>Ekran za pokretanje igre sa opcijama Nova igra, Učitaj i Opcije.</Opis>
+			<TipZadatka>Umetnost</TipZadatka>
+			<Prioritet>Srednji</Prioritet>
+			<Status>Zavrseno</Status>
+			<ProcenatZavrsenosti>100</ProcenatZavrsenosti>
+			<RokZaZavrsetak>2026-01-25</RokZaZavrsetak>
+			<Napomena></Napomena>
+			<KljucnaTackaRazvojaID>1</KljucnaTackaRazvojaID>
+			<ClanTimaID>2</ClanTimaID>
+		</Zadatak>
+		<Zadatak>
+			<Sifra>ZAD-2026-0003</Sifra>
+			<Naziv>Sistem inventara</Naziv>
+			<Opis>Prikupljanje i upravljanje predmetima u igri sa drag-and-drop interfejsom.</Opis>
+			<TipZadatka>Funkcija</TipZadatka>
+			<Prioritet>Visok</Prioritet>
+			<Status>U radu</Status>
+			<ProcenatZavrsenosti>60</ProcenatZavrsenosti>
+			<RokZaZavrsetak>2026-10-15</RokZaZavrsetak>
+			<Napomena>Čeka se dizajn ikonice.</Napomena>
+			<KljucnaTackaRazvojaID>4</KljucnaTackaRazvojaID>
+			<ClanTimaID>1</ClanTimaID>
+		</Zadatak>
+		<Zadatak>
+			<Sifra>ZAD-2026-0004</Sifra>
+			<Naziv>Bag: teksture trepere na sporim računarima</Naziv>
+			<Opis>Problem sa renderovanjem pri ispod 30fps — teksture se ne učitavaju ispravno.</Opis>
+			<TipZadatka>Bag</TipZadatka>
+			<Prioritet>Srednji</Prioritet>
+			<Status>Otvoren</Status>
+			<ProcenatZavrsenosti>0</ProcenatZavrsenosti>
+			<RokZaZavrsetak>2026-10-20</RokZaZavrsetak>
+			<Napomena>Reprodukovano na Intel HD 4000.</Napomena>
+			<KljucnaTackaRazvojaID>4</KljucnaTackaRazvojaID>
+			<ClanTimaID>3</ClanTimaID>
+		</Zadatak>
+		<Zadatak>
+			<Sifra>ZAD-2026-0005</Sifra>
+			<Naziv>Animacije neprijatelja</Naziv>
+			<Opis>Hodanje, napad i smrt animacije za sve tipove neprijatelja.</Opis>
+			<TipZadatka>Umetnost</TipZadatka>
+			<Prioritet>Srednji</Prioritet>
+			<Status>Otvoren</Status>
+			<ProcenatZavrsenosti>0</ProcenatZavrsenosti>
+			<RokZaZavrsetak>2026-10-25</RokZaZavrsetak>
+			<Napomena></Napomena>
+			<KljucnaTackaRazvojaID>4</KljucnaTackaRazvojaID>
+			<ClanTimaID>2</ClanTimaID>
+		</Zadatak>
+		<Zadatak>
+			<Sifra>ZAD-2026-0006</Sifra>
+			<Naziv>Sistem čuvanja napretka</Naziv>
+			<Opis>Čuvanje i učitavanje stanja igre na više slotova.</Opis>
+			<TipZadatka>Funkcija</TipZadatka>
+			<Prioritet>Visok</Prioritet>
+			<Status>Testiranje</Status>
+			<ProcenatZavrsenosti>85</ProcenatZavrsenosti>
+			<RokZaZavrsetak>2026-10-10</RokZaZavrsetak>
+			<Napomena>Testirati na svim platformama.</Napomena>
+			<KljucnaTackaRazvojaID>4</KljucnaTackaRazvojaID>
+			<ClanTimaID>1</ClanTimaID>
+		</Zadatak>
+		<Zadatak>
+			<Sifra>ZAD-2026-0007</Sifra>
+			<Naziv>Muzika i zvučni efekti</Naziv>
+			<Opis>Implementacija pozadinske muzike i zvučnih efekata za akcije igrača.</Opis>
+			<TipZadatka>Umetnost</TipZadatka>
+			<Prioritet>Nizak</Prioritet>
+			<Status>Otvoren</Status>
+			<ProcenatZavrsenosti>0</ProcenatZavrsenosti>
+			<RokZaZavrsetak>2026-11-15</RokZaZavrsetak>
+			<Napomena></Napomena>
+			<KljucnaTackaRazvojaID>5</KljucnaTackaRazvojaID>
+			<ClanTimaID>4</ClanTimaID>
+		</Zadatak>
+	</Zadaci>
+
+	<Stavke>
+		<StavkaZadatka>
+			<ZadatakID>1</ZadatakID>
+			<RedniBroj>1</RedniBroj>
+			<NazivPodzadatka>Definisati ulazne komande za kretanje</NazivPodzadatka>
+			<Zavrseno>true</Zavrseno>
+		</StavkaZadatka>
+		<StavkaZadatka>
+			<ZadatakID>1</ZadatakID>
+			<RedniBroj>2</RedniBroj>
+			<NazivPodzadatka>Implementirati fiziku kretanja</NazivPodzadatka>
+			<Zavrseno>true</Zavrseno>
+		</StavkaZadatka>
+		<StavkaZadatka>
+			<ZadatakID>1</ZadatakID>
+			<RedniBroj>3</RedniBroj>
+			<NazivPodzadatka>Dodati animacije za svaki pravac kretanja</NazivPodzadatka>
+			<Zavrseno>true</Zavrseno>
+		</StavkaZadatka>
+		<StavkaZadatka>
+			<ZadatakID>3</ZadatakID>
+			<RedniBroj>1</RedniBroj>
+			<NazivPodzadatka>Integrisati predmete u svet igre</NazivPodzadatka>
+			<Zavrseno>false</Zavrseno>
+		</StavkaZadatka>
+		<StavkaZadatka>
+			<ZadatakID>3</ZadatakID>
+			<RedniBroj>2</RedniBroj>
+			<NazivPodzadatka>Implementirati UI za prikaz inventara</NazivPodzadatka>
+			<Zavrseno>true</Zavrseno>
+		</StavkaZadatka>
+		<StavkaZadatka>
+			<ZadatakID>3</ZadatakID>
+			<RedniBroj>3</RedniBroj>
+			<NazivPodzadatka>Dodati logiku za korišćenje predmeta</NazivPodzadatka>
+			<Zavrseno>false</Zavrseno>
+		</StavkaZadatka>
+		<StavkaZadatka>
+			<ZadatakID>6</ZadatakID>
+			<RedniBroj>1</RedniBroj>
+			<NazivPodzadatka>Implementirati serijalizaciju stanja igre</NazivPodzadatka>
+			<Zavrseno>true</Zavrseno>
+		</StavkaZadatka>
+		<StavkaZadatka>
+			<ZadatakID>6</ZadatakID>
+			<RedniBroj>2</RedniBroj>
+			<NazivPodzadatka>Kreirati UI za izbor slota</NazivPodzadatka>
+			<Zavrseno>true</Zavrseno>
+		</StavkaZadatka>
+		<StavkaZadatka>
+			<ZadatakID>6</ZadatakID>
+			<RedniBroj>3</RedniBroj>
+			<NazivPodzadatka>Testirati učitavanje na svim platformama</NazivPodzadatka>
+			<Zavrseno>false</Zavrseno>
+		</StavkaZadatka>
+	</Stavke>
 
 </PocetniPodaci>

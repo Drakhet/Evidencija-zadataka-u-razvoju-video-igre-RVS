@@ -25,8 +25,8 @@ graditelj.Services.AddCors(o => o.AddPolicy("DozvoliSve", b =>
     b.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
 var putanjaXmlPravila = Path.Combine(
-    Directory.GetCurrentDirectory(), "..",
-    "SlojPoslovneLogike", "Ogranicenja", "pravila_eskalacije.xml");
+    AppDomain.CurrentDomain.BaseDirectory,
+    "pravila_eskalacije.xml");
 
 graditelj.Services.AddSingleton(
     new SlojPoslovneLogike.Ogranicenja.CitacPravila(putanjaXmlPravila));
@@ -43,9 +43,10 @@ using (var opseg = aplikacija.Services.CreateScope())
 {
     var kontekst = opseg.ServiceProvider.GetRequiredService<EvidencijaDbContext>();
     var putanjaXml = Path.Combine(
-        AppDomain.CurrentDomain.BaseDirectory,
-        "..", "..", "..", "..",
-        "SlojPodataka", "XML", "pocetni_podaci.xml");
+     AppDomain.CurrentDomain.BaseDirectory,
+     "..", "..", "..", "..",
+     "SlojPodataka", "XML", "pocetni_podaci.xml");
+
     putanjaXml = Path.GetFullPath(putanjaXml);
     Console.WriteLine($"Putanja XML: {putanjaXml}");
     Console.WriteLine($"Fajl postoji: {File.Exists(putanjaXml)}");

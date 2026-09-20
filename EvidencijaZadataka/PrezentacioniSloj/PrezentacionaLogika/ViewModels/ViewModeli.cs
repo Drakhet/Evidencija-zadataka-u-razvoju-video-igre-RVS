@@ -66,7 +66,7 @@ namespace PrezentacioniSloj.PrezentacionaLogika.ViewModels
         public string Status { get; set; } = "Otvoren";
 
         [Range(0, 100, ErrorMessage = "Procenat mora biti između 0 i 100.")]
-        [Display(Name = "Procenat završenosti (%)")]
+        [Display(Name = "Procenat Zavrsenosti (%)")]
         public int ProcenatZavrsenosti { get; set; } = 0;
 
         [Required(ErrorMessage = "Rok za završetak je obavezan.")]
@@ -107,7 +107,7 @@ namespace PrezentacioniSloj.PrezentacionaLogika.ViewModels
         [Display(Name = "Naziv podzadatka")]
         public string NazivPodzadatka { get; set; } = string.Empty;
 
-        [Display(Name = "Završeno")]
+        [Display(Name = "Zavrseno")]
         public bool Zavrseno { get; set; } = false;
     }
 }

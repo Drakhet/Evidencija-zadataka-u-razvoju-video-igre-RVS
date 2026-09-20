@@ -14,7 +14,7 @@
     <div class="col-auto">
         <select name="status" class="form-select form-select-sm">
             <option value="">— Svi statusi —</option>
-            @foreach (var s in new[] { "Otvoren", "U radu", "Testiranje", "Završeno", "Kasni" })
+            @foreach (var s in new[] { "Otvoren", "U radu", "Testiranje", "Zavrseno", "Kasni" })
             {
                 <option value="@s" selected="@(ViewBag.TrenutniStatus == s)">@s</option>
             }
@@ -75,7 +75,7 @@ else
                 @foreach (var z in Model)
                 {
                     int dani = (z.RokZaZavrsetak - DateTime.Today).Days;
-                    bool upozorenje = z.Status != "Završeno" && dani <= 3;
+                    bool upozorenje = z.Status != "Zavrseno" && dani <= 3;
 
                     <tr class="@(upozorenje ? "table-danger" : "")">
                         <td><code>@z.Sifra</code></td>

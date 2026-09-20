@@ -83,7 +83,7 @@
                 @foreach (var z in Model)
                 {
                     int dani = (z.RokZaZavrsetak - DateTime.Today).Days;
-                    bool upoz = z.Status != "Završeno" && dani <= 3;
+                    bool upoz = z.Status != "Zavrseno" && dani <= 3;
 
                     <tr class="@(upoz ? "upozorenje" : "")">
                         <td><strong>@z.Sifra</strong></td>

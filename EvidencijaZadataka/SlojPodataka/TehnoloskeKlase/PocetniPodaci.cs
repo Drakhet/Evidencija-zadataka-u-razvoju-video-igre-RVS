@@ -12,6 +12,7 @@ namespace SlojPodataka.TehnoloskeKlase
     {
         public static void PopuniSve(EvidencijaDbContext kontekst, string putanjaXml)
         {
+            Console.WriteLine($"PopuniSve pozvan, fajl postoji: {File.Exists(putanjaXml)}");
             if (!File.Exists(putanjaXml)) return;
 
             var xml = XDocument.Load(putanjaXml);
@@ -19,6 +20,8 @@ namespace SlojPodataka.TehnoloskeKlase
             PopuniKljucneTacke(kontekst, xml);
             PopuniClanove(kontekst, xml);
             PopuniKorisnike(kontekst, xml);
+            PopuniZadatke(kontekst, xml);
+            PopuniStavke(kontekst, xml);
         }
 
         private static void PopuniKljucneTacke(EvidencijaDbContext kontekst, XDocument xml)
@@ -79,6 +82,67 @@ namespace SlojPodataka.TehnoloskeKlase
             if (korisnici.Any())
             {
                 kontekst.Korisnici.AddRange(korisnici);
+                kontekst.SaveChanges();
+            }
+        }
+        private static void PopuniZadatke(EvidencijaDbContext kontekst, XDocument xml)
+        {
+            if (kontekst.Zadaci.Any()) return;
+
+            var zadaci = xml.Descendants("Zadatak").Select(z => new Zadatak
+            {
+                Sifra = z.Element("Sifra")?.Value ?? string.Empty,
+                Naziv = z.Element("Naziv")?.Value ?? string.Empty,
+                Opis = z.Element("Opis")?.Value ?? string.Empty,
+                TipZadatka = z.Element("TipZadatka")?.Value ?? string.Empty,
+                Prioritet = z.Element("Prioritet")?.Value ?? "Srednji",
+                Status = z.Element("Status")?.Value ?? "Otvoren",
+                ProcenatZavrsenosti = int.Parse(
+                    z.Element("ProcenatZavrsenosti")?.Value ?? "0"),
+                RokZaZavrsetak = DateTime.Parse(
+                    z.Element("RokZaZavrsetak")?.Value
+                    ?? DateTime.Now.AddMonths(1).ToString()),
+                Napomena = z.Element("Napomena")?.Value ?? string.Empty,
+                KljucnaTackaRazvojaID = int.Parse(
+                    z.Element("KljucnaTackaRazvojaID")?.Value ?? "1"),
+                ClanTimaID = int.Parse(
+                    z.Element("ClanTimaID")?.Value ?? "1"),
+                DatumKreiranja = DateTime.Now
+            }).ToList();
+
+            if (zadaci.Any())
+            {
+                kontekst.Zadaci.AddRange(zadaci);
+                kontekst.SaveChanges();
+            }
+        }
+
+        private static void PopuniStavke(EvidencijaDbContext kontekst, XDocument xml)
+        {
+            if (kontekst.StavkeZadataka.Any()) return;
+
+            var zadaci = kontekst.Zadaci
+                .OrderBy(z => z.ZadatakID)
+                .ToList();
+
+            var stavke = xml.Descendants("StavkaZadatka").Select(s =>
+            {
+                int redosled = int.Parse(s.Element("ZadatakID")?.Value ?? "1");
+                var zadatak = zadaci.ElementAtOrDefault(redosled - 1);
+
+                return new StavkaZadatka
+                {
+                    ZadatakID = zadatak?.ZadatakID ?? 0,
+                    RedniBroj = int.Parse(s.Element("RedniBroj")?.Value ?? "1"),
+                    NazivPodzadatka = s.Element("NazivPodzadatka")?.Value ?? string.Empty,
+                    Zavrseno = bool.Parse(s.Element("Zavrseno")?.Value ?? "false"),
+                    DatumKreiranja = DateTime.Now
+                };
+            }).Where(s => s.ZadatakID > 0).ToList();
+
+            if (stavke.Any())
+            {
+                kontekst.StavkeZadataka.AddRange(stavke);
                 kontekst.SaveChanges();
             }
         }

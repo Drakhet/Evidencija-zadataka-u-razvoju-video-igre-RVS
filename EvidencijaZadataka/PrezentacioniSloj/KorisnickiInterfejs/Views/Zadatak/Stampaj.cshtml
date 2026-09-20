@@ -5,7 +5,6 @@
     Layout = null;
     int dani = ViewBag.DaniDoRoka ?? 0;
 }
-
 <!DOCTYPE html>
 <html lang="sr">
 <head>
@@ -14,30 +13,23 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: Arial, sans-serif; font-size: 11pt; color: #000; padding: 20px; }
-        .zaglavlje { border-bottom: 2px solid #000; padding-bottom: 8px; margin-bottom: 16px; }
-        .naslov { font-size: 16pt; font-weight: bold; text-transform: uppercase; }
-        .meta { font-size: 9pt; color: #555; margin-top: 4px; }
-        .sekcija { margin-bottom: 14px; }
-        .sekcija-naslov {
-            font-size: 10pt; font-weight: bold; text-transform: uppercase;
-            border-bottom: 1px solid #ccc; padding-bottom: 3px;
-            margin-bottom: 8px; color: #333;
+        .kartica {
+            border: 1px solid #000;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
         }
-        .red { display: flex; margin-bottom: 4px; }
-        .labela { width: 180px; font-weight: bold; flex-shrink: 0; color: #444; }
-        .vrednost { flex: 1; }
-        table { width: 100%; border-collapse: collapse; font-size: 10pt; }
-        th { background: #eee; border: 1px solid #ccc; padding: 5px 8px; text-align: left; }
-        td { border: 1px solid #ccc; padding: 5px 8px; }
-        .podnozje {
-            border-top: 1px solid #ccc; padding-top: 8px; margin-top: 20px;
-            font-size: 9pt; color: #666;
-            display: flex; justify-content: space-between;
+        .separator { border-top: 1px dashed #000; margin: 10px 0; }
+        .naslov-kartice { font-weight: bold; font-size: 13pt; margin-bottom: 4px; }
+        .red { margin-bottom: 8px; }
+        .vrednost {
+            border-bottom: 1px solid #000;
+            display: inline-block;
+            min-width: 200px;
+            padding-bottom: 1px;
         }
-        .potpis {
-            margin-top: 40px; border-top: 1px solid #000;
-            width: 200px; padding-top: 4px; font-size: 9pt;
-        }
+        .sekcija-naslov { font-weight: bold; margin-bottom: 8px; }
+        .checkbox-red { margin-bottom: 4px; }
         .dugme-stampa { margin-bottom: 16px; }
         @@media print {
             .dugme-stampa { display: none !important; }
@@ -50,7 +42,7 @@
     <div class="dugme-stampa">
         <button onclick="window.print()"
                 style="padding:8px 20px;cursor:pointer;">
-            🖨 Odštampaj
+                Odštampaj
         </button>
         <button onclick="window.history.back()"
                 style="padding:8px 20px;cursor:pointer;margin-left:8px;">
@@ -58,123 +50,108 @@
         </button>
     </div>
 
-    <div class="zaglavlje">
-        <div class="naslov">Kartica zadatka</div>
-        <div class="meta">
-            Evidencija zadataka na razvoju igre &nbsp;|&nbsp;
-            Šifra: <strong>@Model.Sifra</strong> &nbsp;|&nbsp;
-            Odštampano: @DateTime.Now.ToString("dd.MM.yyyy HH:mm")
-        </div>
-    </div>
+    <div class="kartica">
+        <div class="separator"></div>
+        <div class="naslov-kartice">KARTICA ZADATKA</div>
+        <div class="separator"></div>
 
-    <div class="sekcija">
-        <div class="sekcija-naslov">1. Podaci o zadatku</div>
         <div class="red">
-            <span class="labela">Naziv zadatka:</span>
-            <span class="vrednost">@Model.Naziv</span>
+            Šifra zadatka:
+            <span class="vrednost">@Model.Sifra</span>
         </div>
         <div class="red">
-            <span class="labela">Tip zadatka:</span>
-            <span class="vrednost">@Model.TipZadatka</span>
+            Naziv zadatka:
+            <span class="vrednost" style="min-width:300px">@Model.Naziv</span>
         </div>
         <div class="red">
-            <span class="labela">Opis:</span>
-            <span class="vrednost">
-                @(string.IsNullOrEmpty(Model.Opis) ? "—" : Model.Opis)
+            Tip zadatka: &nbsp;
+            [ @(Model.TipZadatka == "Funkcija" ? "X" : " ") ] Funkcija &nbsp;&nbsp;
+            [ @(Model.TipZadatka == "Bag"      ? "X" : " ") ] Bag &nbsp;&nbsp;
+            [ @(Model.TipZadatka == "Umetnost" ? "X" : " ") ] Umetnost
+        </div>
+        <div class="red">
+            Opis zadatka:
+            <span class="vrednost" style="min-width:300px">
+                @(string.IsNullOrEmpty(Model.Opis) ? "" : Model.Opis)
             </span>
         </div>
-    </div>
 
-    <div class="sekcija">
-        <div class="sekcija-naslov">2. Razvojna etapa i dodela</div>
+        <div class="separator"></div>
+        <div class="sekcija-naslov">1. KLJUČNA TAČKA RAZVOJA</div>
+
         <div class="red">
-            <span class="labela">Ključna tačka:</span>
-            <span class="vrednost">@Model.KljucnaTackaRazvoja?.Naziv</span>
-        </div>
-        <div class="red">
-            <span class="labela">Zaduženi član tima:</span>
-            <span class="vrednost">@Model.ClanTima?.PunoIme</span>
-        </div>
-        <div class="red">
-            <span class="labela">Datum kreiranja:</span>
-            <span class="vrednost">
-                @Model.DatumKreiranja.ToString("dd.MM.yyyy")
+            Ključna tačka:
+            <span class="vrednost" style="min-width:250px">
+                @Model.KljucnaTackaRazvoja?.Naziv
             </span>
         </div>
         <div class="red">
-            <span class="labela">Rok za završetak:</span>
+            Rok ključne tačke:
             <span class="vrednost">
-                @Model.RokZaZavrsetak.ToString("dd.MM.yyyy")
-                @if (dani < 0)
-                {
-                    <span> — ROK ISTEKAO</span>
-                }
-                else if (dani <= 3)
-                {
-                    <span> — ističe za @dani dana</span>
-                }
+                @Model.KljucnaTackaRazvoja?.DatumZavrsetka.ToString("dd.MM.yyyy")
             </span>
         </div>
-    </div>
 
-    <div class="sekcija">
-        <div class="sekcija-naslov">3. Praćenje realizacije</div>
+        <div class="separator"></div>
+        <div class="sekcija-naslov">2. DODELA I ROKOVI</div>
+
         <div class="red">
-            <span class="labela">Prioritet:</span>
-            <span class="vrednost">@Model.Prioritet</span>
-        </div>
-        <div class="red">
-            <span class="labela">Status:</span>
-            <span class="vrednost">@Model.Status</span>
+            Zadužena osoba:
+            <span class="vrednost" style="min-width:220px">
+                @Model.ClanTima?.PunoIme
+            </span>
         </div>
         <div class="red">
-            <span class="labela">Procenat završenosti:</span>
-            <span class="vrednost">@Model.ProcenatZavrsenosti %</span>
+            Datum kreiranja:
+            <span class="vrednost">@Model.DatumKreiranja.ToString("dd.MM.yyyy")</span>
         </div>
-        @if (!string.IsNullOrEmpty(Model.Napomena))
-        {
-            <div class="red">
-                <span class="labela">Napomena:</span>
-                <span class="vrednost">@Model.Napomena</span>
-            </div>
-        }
-    </div>
-
-    @if (Model.Stavke.Any())
-    {
-        <div class="sekcija">
-            <div class="sekcija-naslov">4. Podzadaci (@Model.Stavke.Count)</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width:50px">Rb.</th>
-                        <th>Naziv podzadatka</th>
-                        <th style="width:80px">Završeno</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var s in Model.Stavke.OrderBy(x => x.RedniBroj))
-                    {
-                        <tr>
-                            <td>@s.RedniBroj.</td>
-                            <td>@s.NazivPodzadatka</td>
-                            <td>@(s.Zavrseno ? "Da" : "Ne")</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        <div class="red">
+            Rok za završetak:
+            <span class="vrednost">@Model.RokZaZavrsetak.ToString("dd.MM.yyyy")</span>
         </div>
-    }
+        <div class="red">
+            Prioritet: &nbsp;
+            [ @(Model.Prioritet == "Nizak"   ? "X" : " ") ] Nizak &nbsp;&nbsp;
+            [ @(Model.Prioritet == "Srednji" ? "X" : " ") ] Srednji &nbsp;&nbsp;
+            [ @(Model.Prioritet == "Visok"   ? "X" : " ") ] Visok
+        </div>
 
-    <div style="display:flex;justify-content:space-between;margin-top:40px;">
-        <div class="potpis">Odgovorna osoba</div>
-        <div class="potpis">Potpis</div>
-    </div>
+        <div class="separator"></div>
+        <div class="sekcija-naslov">3. PRAĆENJE REALIZACIJE</div>
 
-    <div class="podnozje">
-        <span>Evidencija zadataka na razvoju igre</span>
-        <span>@Model.Sifra</span>
-        <span>@DateTime.Now.ToString("dd.MM.yyyy")</span>
+        <div class="red">Status:</div>
+        <div class="checkbox-red">[ @(Model.Status == "Otvoren"    ? "X" : " ") ] Otvoren</div>
+        <div class="checkbox-red">[ @(Model.Status == "U radu"     ? "X" : " ") ] U radu</div>
+        <div class="checkbox-red">[ @(Model.Status == "Testiranje" ? "X" : " ") ] Testiranje</div>
+        <div class="checkbox-red">[ @(Model.Status == "Zavrseno"   ? "X" : " ") ] Zavrseno</div>
+        <div class="checkbox-red" style="margin-bottom:8px">
+            [ @(Model.Status == "Kasni" ? "X" : " ") ] Kasni
+        </div>
+
+        <div class="red">
+            Procenat Zavrsenosti:
+            <span class="vrednost" style="min-width:60px">
+                @Model.ProcenatZavrsenosti
+            </span> %
+        </div>
+        <div class="red">
+            Napomena:
+            <span class="vrednost" style="min-width:280px">
+                @Model.Napomena
+            </span>
+        </div>
+
+        <div class="separator"></div>
+        <div class="red">
+            Odgovorna osoba:
+            <span class="vrednost" style="min-width:220px"></span>
+        </div>
+        <div class="red" style="margin-top:12px">
+            Potpis:
+            <span class="vrednost" style="min-width:220px"></span>
+        </div>
+        <div class="separator"></div>
+
     </div>
 
 </body>
