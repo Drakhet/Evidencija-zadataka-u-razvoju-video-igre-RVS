@@ -12,7 +12,10 @@
     <input type="hidden" asp-for="Sifra" />
     <input type="hidden" asp-for="DatumKreiranja" />
 
-    <div asp-validation-summary="All" class="alert alert-danger"></div>
+    @if (!ViewData.ModelState.IsValid && ViewData.ModelState.ErrorCount > 0)
+    {
+        <div asp-validation-summary="All" class="alert alert-danger"></div>
+    }
 
     @* MASTER — podaci o zadatku *@
     <div class="card mb-3">
@@ -124,7 +127,7 @@
             <strong>Podzadaci</strong>
             <button type="button" class="btn btn-sm btn-light"
                     id="dugmeDodajStavku">
-                ➕ Dodaj podzadatak
+                Dodaj podzadatak
             </button>
         </div>
         <div class="card-body p-0">
