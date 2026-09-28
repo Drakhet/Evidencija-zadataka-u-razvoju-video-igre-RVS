@@ -44,8 +44,16 @@
         </select>
     </div>
     <div class="col-auto">
-        <button type="submit" class="btn btn-sm btn-secondary">Filtriraj</button>
-        <a asp-action="Spisak" class="btn btn-sm btn-outline-secondary">Poništi</a>
+        <div class="col-auto">
+    <button type="submit" class="btn btn-sm btn-secondary">Filtriraj</button>
+    <a asp-action="Spisak" class="btn btn-sm btn-outline-secondary">Poništi</a>
+    <button type="submit" 
+            asp-action="StampajSpisak" 
+            asp-controller="Zadatak"
+            class="btn btn-sm btn-outline-dark">
+        Štampaj spisak
+    </button>
+</div>
     </div>
 </form>
 

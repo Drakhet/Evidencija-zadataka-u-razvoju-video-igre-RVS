@@ -178,17 +178,5 @@ namespace SlojPodataka.TehnoloskeKlase
 
             return upit.OrderBy(z => z.RokZaZavrsetak).ToList();
         }
-
-        public int DohvatiUkupanBrojZadatakaPrekoSP()
-        {
-            using var veza = new Microsoft.Data.SqlClient.SqlConnection(
-                _kontekst.Database.GetConnectionString());
-            var komanda = new Microsoft.Data.SqlClient.SqlCommand(
-                "sp_DajUkupanBrojZadataka", veza);
-            komanda.CommandType = System.Data.CommandType.StoredProcedure;
-            veza.Open();
-            var rezultat = komanda.ExecuteScalar();
-            return Convert.ToInt32(rezultat);
-        }
     }
 }

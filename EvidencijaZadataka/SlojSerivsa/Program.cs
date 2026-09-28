@@ -10,6 +10,7 @@ var nizKonekcije = graditelj.Configuration
 graditelj.Services.AddDbContext<EvidencijaDbContext>(opcije =>
     opcije.UseSqlServer(nizKonekcije));
 
+graditelj.Services.AddScoped<ZadatakSPRepozitorijum>();
 graditelj.Services.AddScoped<KorisnikRepozitorijum>();
 graditelj.Services.AddScoped<ZadatakRepozitorijum>();
 
@@ -48,8 +49,6 @@ using (var opseg = aplikacija.Services.CreateScope())
      "SlojPodataka", "XML", "pocetni_podaci.xml");
 
     putanjaXml = Path.GetFullPath(putanjaXml);
-    Console.WriteLine($"Putanja XML: {putanjaXml}");
-    Console.WriteLine($"Fajl postoji: {File.Exists(putanjaXml)}");
     PocetniPodaci.PopuniSve(kontekst, putanjaXml);
 
 }

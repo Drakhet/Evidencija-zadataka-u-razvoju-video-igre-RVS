@@ -9,13 +9,16 @@ namespace SlojServisa.WebServis
     public class ZadatakRestKontroler : ControllerBase
     {
         private readonly ZadatakRepozitorijum _repo;
+        private readonly ZadatakSPRepozitorijum _spRepozitorijum;
         private readonly SlojPoslovneLogike.Stanje.PrikupljanjeStanja _prikupljanje;
 
         public ZadatakRestKontroler(
             ZadatakRepozitorijum repo,
+            ZadatakSPRepozitorijum spRepozitorijum,
             SlojPoslovneLogike.Stanje.PrikupljanjeStanja prikupljanje)
         {
             _repo = repo;
+            _spRepozitorijum = spRepozitorijum;
             _prikupljanje = prikupljanje;
         }
 
@@ -39,9 +42,9 @@ namespace SlojServisa.WebServis
 
         [HttpGet("filtriraj")]
         public ActionResult<List<Zadatak>> Filtriraj(
-      [FromQuery] string? status,
-      [FromQuery] string? tipZadatka,
-      [FromQuery] int? kljucnaTackaId)
+            [FromQuery] string? status,
+            [FromQuery] string? tipZadatka,
+            [FromQuery] int? kljucnaTackaId)
         {
             Console.WriteLine("Filtriraj pozvan");
             _prikupljanje.PrimeniPravilo();
@@ -49,10 +52,18 @@ namespace SlojServisa.WebServis
             return Ok(zadaci);
         }
 
-        [HttpGet("ukupno")]
-        public ActionResult<int> DohvatiUkupanBroj()
+        [HttpGet("ukupan-broj")]
+        public IActionResult DohvatiUkupanBroj()
         {
-            return Ok(_repo.DohvatiUkupanBrojZadatakaPrekoSP());
+            var broj = _spRepozitorijum.DohvatiUkupanBrojZadataka();
+            return Ok(new { ukupanBroj = broj });
+        }
+
+        [HttpGet("broj-po-statusu/{status}")]
+        public IActionResult DohvatiBrojPoStatusu(string status)
+        {
+            var broj = _spRepozitorijum.DohvatiBrojZadatakaPoStatusu(status);
+            return Ok(new { status = status, broj = broj });
         }
 
         [HttpGet("kljucnetacke")]

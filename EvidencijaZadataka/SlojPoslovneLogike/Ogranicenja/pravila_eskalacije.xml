@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Pravila>
+  <RokZaPrioritet>3</RokZaPrioritet>
+  <MinimalniProcenatZaRad>1</MinimalniProcenatZaRad>
+  <MaksimalniProcenat>100</MaksimalniProcenat>
+</Pravila>
